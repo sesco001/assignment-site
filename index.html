@@ -22,6 +22,13 @@
   <h1 class="text-4xl font-bold mb-4">We Are the Best Among the Best 🚀</h1>
   <p class="text-lg mb-6">Trusted by thousands of students across universities to deliver top-notch, plagiarism-free, on-time assignments.</p>
   <a href="login.html" class="bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded-lg">Get Started</a>
+
+  <!-- Demo Section -->
+  <div class="mt-6">
+    <p class="mb-2 font-semibold">Or try demo:</p>
+    <button onclick="demoLogin('admin')" class="bg-red-500 text-white px-4 py-2 rounded-lg mr-2">Demo Admin</button>
+    <button onclick="demoLogin('user')" class="bg-green-500 text-white px-4 py-2 rounded-lg">Demo Member</button>
+  </div>
 </section>
 
 <!-- Features -->
@@ -45,6 +52,24 @@
   <p>&copy; 2025 Assignment Pro. Built with ❤️ by experts.</p>
 </footer>
 
+<script>
+// Demo credentials
+const demoAdmin = { email: "marcasmatheka@gmail.com", password: "12345678", role: "admin" };
+const demoUser = { email: "johndoe@example.com", password: "12345678", role: "user" };
+
+function demoLogin(role){
+  let user;
+  if(role === "admin") user = demoAdmin;
+  else user = demoUser;
+
+  // Store in localStorage as logged in user
+  localStorage.setItem("user", JSON.stringify(user));
+
+  // Redirect based on role
+  if(role === "admin") window.location.href = "admin.html";
+  else window.location.href = "dashboard.html";
+}
+</script>
+
 </body>
 </html>
-
