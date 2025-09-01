@@ -2,40 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login - Assignment Help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | SmartAssign</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header>
-    <h1>🔑 Login</h1>
-    <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="login.html">🔑 Login</a>
-    </nav>
-  </header>
+<body class="centered">
+  <div class="form-container">
+    <h2>Welcome Back</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="text" id="university" placeholder="University" required>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p class="note">Don't have an account? <a href="register.html">Register</a></p>
+  </div>
 
-  <main>
-    <section class="form-box">
-      <h2>Login to Your Account</h2>
-      <form id="loginForm">
-        <label for="email">📧 Email</label>
-        <input type="email" id="email" required>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const university = document.getElementById("university").value;
 
-        <label for="password">🔒 Password</label>
-        <input type="password" id="password" required>
+      const res = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
 
-        <label for="university">🎓 University</label>
-        <input type="text" id="university" required>
-
-        <button type="submit">Login</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Assignment Help</p>
-  </footer>
-
-  <script src="app.js"></script>
+      const data = await res.json();
+      if (data.id) {
+        localStorage.setItem("user", JSON.stringify(data));
+        alert("Welcome to your dashboard!");
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Login failed: " + (data.error || "Unknown error"));
+      }
+    });
+  </script>
 </body>
 </html>
