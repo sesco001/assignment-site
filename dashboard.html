@@ -3,82 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | SmartAssign</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Dashboard - Assignment Pro</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header class="navbar">
-    <h1 class="logo">SmartAssign</h1>
-    <nav>
-      <a href="index.html" class="btn">Home</a>
-      <a href="#" id="logout" class="btn btn-danger">Logout</a>
-    </nav>
-  </header>
+<body class="bg-gray-100 min-h-screen">
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white p-4 flex justify-between">
+    <h1 class="text-xl font-bold">📘 Assignment Pro</h1>
+    <div>Welcome back, Student 🎓</div>
+  </nav>
 
-  <section class="dashboard">
-    <h2>Your Dashboard</h2>
-    <form id="assignmentForm" class="card">
-      <input type="text" id="title" placeholder="Assignment Title" required>
-      <input type="text" id="file" placeholder="Paste File URL (PDF, DOCX, etc.)" required>
-      <button type="submit" class="btn btn-primary">Submit Assignment</button>
-    </form>
+  <!-- Dashboard -->
+  <section class="max-w-5xl mx-auto mt-10">
+    <h2 class="text-2xl font-bold mb-6">Your Dashboard</h2>
 
-    <h3>Past Assignments</h3>
-    <table class="assignments-table">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Status</th>
-          <th>Payment</th>
-        </tr>
-      </thead>
-      <tbody id="assignmentList"></tbody>
-    </table>
-  </section>
-
-  <script>
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) window.location.href = "login.html";
-
-    document.getElementById("assignmentForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const title = document.getElementById("title").value;
-      const file = document.getElementById("file").value;
-
-      await fetch("http://localhost:5000/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user_id: user.id, title, file })
-      });
-
-      alert("Assignment submitted! Please pay to proceed.");
-      loadAssignments();
-    });
-
-    async function loadAssignments() {
-      const res = await fetch("http://localhost:5000/api/assignments");
-      const data = await res.json();
-      const tbody = document.getElementById("assignmentList");
-      tbody.innerHTML = "";
-      data.filter(a => a.user_id === user.id).forEach(a => {
-        tbody.innerHTML += `
+    <!-- Assignments Table -->
+    <div class="bg-white shadow-md rounded-xl p-6">
+      <table class="w-full text-left">
+        <thead class="bg-gray-200">
           <tr>
-            <td>${a.title}</td>
-            <td>${a.status}</td>
-            <td>
-              ${a.paid ? "✅ Paid" : `<a href="http://localhost:5000/api/pay/${a.id}" class="btn btn-primary">Pay Now</a>`}
+            <th class="p-3">Assignment</th>
+            <th class="p-3">Status</th>
+            <th class="p-3">Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="p-3">Population Geography Essay</td>
+            <td class="p-3 text-yellow-600 font-bold">Pending</td>
+            <td class="p-3">
+              <a href="http://localhost:5000/api/pay/1" class="bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg font-bold">Pay Now</a>
             </td>
           </tr>
-        `;
-      });
-    }
-
-    loadAssignments();
-
-    document.getElementById("logout").addEventListener("click", () => {
-      localStorage.removeItem("user");
-      window.location.href = "index.html";
-    });
-  </script>
+          <tr class="border-b">
+            <td class="p-3">Political Science Research</td>
+            <td class="p-3 text-green-600 font-bold">Completed</td>
+            <td class="p-3">Paid ✅</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </body>
 </html>
