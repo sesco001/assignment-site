@@ -2,63 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Assignment Help Platform</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Assignment Guru - Login</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <header>
-    <h1>📚 Assignment Help</h1>
-    <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="login.html">🔐 Login</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h2>We Are the Best Among the Best 🚀</h2>
+  <div class="container">
+    <!-- Left side description -->
+    <div class="info-section">
+      <h1>📚 Assignment Guru</h1>
       <p>
-        Struggling with deadlines? We’ve got you covered.  
-        From research papers to coding assignments, our team of experts delivers  
-        top-notch, plagiarism-free, and timely solutions.  
-        Experience academic success like never before!
+        Focus on your studies and exams while we handle your assignments.  
+        Get <strong>plagiarism-free, timely, and high-quality work</strong> from experts you can trust.
       </p>
-      <button onclick="location.href='login.html'">Get Started</button>
-    </section>
-
-    <section class="features">
-      <h3>🌟 Why Choose Us?</h3>
       <ul>
-        <li>✔️ Expert tutors across all study fields</li>
-        <li>✔️ Affordable & flexible payment methods</li>
-        <li>✔️ Secure and private submissions</li>
-        <li>✔️ 24/7 support to guide you</li>
-        <li>✔️ Track assignment progress in real-time</li>
+        <li>✅ Expert-written assignments</li>
+        <li>✅ On-time delivery</li>
+        <li>✅ Affordable and student-friendly</li>
       </ul>
-    </section>
+    </div>
 
-    <section class="submit-form">
-      <h3>Submit Your Assignment</h3>
-      <form id="assignmentForm">
-        <label>Topic</label>
-        <input type="text" id="topic" required>
+    <!-- Right side login -->
+    <div class="login-section">
+      <div class="login-card">
+        <h2>Welcome Back 👋</h2>
+        <p class="subtitle">Log in to continue</p>
 
-        <label>Description</label>
-        <textarea id="description" required></textarea>
+        <form id="loginForm">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required>
 
-        <label>Upload File</label>
-        <input type="file" id="file">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
 
-        <button type="submit">Submit Assignment</button>
-      </form>
-    </section>
-  </main>
+          <button type="submit">Login</button>
+        </form>
 
-  <footer>
-    <p>© 2025 Assignment Master - Excellence Delivered</p>
-  </footer>
+        <button id="demoBtn" class="demo-btn">🎓 Demo Login</button>
+
+        <p class="signup-text">Don’t have an account? <a href="#">Sign Up</a></p>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
 </html>
-
