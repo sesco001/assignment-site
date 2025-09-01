@@ -1,69 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Assignment Pro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Learner Dashboard - Assignment Pro</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans">
+
   <!-- Navbar -->
-  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">📘 Assignment Pro</h1>
-    <a href="index.html" class="px-3 py-2 bg-yellow-400 text-blue-900 font-semibold rounded-lg">Logout</a>
+  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center shadow">
+    <h1 class="text-2xl font-bold">📘 Assignment Pro</h1>
+    <a href="index.html" class="px-3 py-2 bg-red-500 rounded-lg hover:bg-red-600">Logout</a>
   </nav>
 
   <!-- Welcome -->
-  <section class="text-center py-10 bg-white shadow">
-    <h2 class="text-3xl font-bold">Welcome to Your Dashboard 🎉</h2>
-    <p class="mt-2 text-gray-600">Manage your assignments, track progress, and make secure payments.</p>
-  </section>
+  <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12 text-center">
+    <h2 class="text-3xl font-bold">Welcome Back, Student 🎓</h2>
+    <p class="mt-2 text-lg">Manage your assignments, payments, and progress all in one place.</p>
+  </header>
 
-  <main class="max-w-6xl mx-auto py-10 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <!-- Past Assignments -->
-    <div class="lg:col-span-2 bg-white shadow-md rounded-xl p-6">
-      <h3 class="text-xl font-bold mb-4">📂 Past Assignment Status</h3>
-      <table class="w-full border text-left">
+  <main class="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-6 -mt-8">
+    
+    <!-- Submit Assignment -->
+    <section class="bg-white rounded-xl shadow p-6 md:col-span-2">
+      <h3 class="text-xl font-bold mb-4">📤 Submit Assignment</h3>
+      <form class="space-y-4">
+        <div>
+          <label class="block font-semibold mb-1">Assignment Title</label>
+          <input type="text" class="w-full border rounded-lg p-3" placeholder="e.g. Population Geography Essay" />
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1">Paste Assignment Link (optional)</label>
+          <input type="url" class="w-full border rounded-lg p-3" placeholder="e.g. https://docs.google.com/..." />
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1">Upload File (optional)</label>
+          <input type="file" class="w-full border rounded-lg p-3" />
+        </div>
+
+        <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-800">
+          Submit Assignment
+        </button>
+      </form>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-xl font-bold mb-4">💳 Payment</h3>
+      <p class="mb-4 text-gray-700">Click below to pay securely with Mpesa STK Push:</p>
+      <a href="https://mpesa-stk.giftedtech.co.ke/maka" target="_blank"
+        class="block text-center px-4 py-3 bg-yellow-400 text-blue-900 font-bold rounded-lg hover:bg-yellow-500">
+        Pay Now
+      </a>
+    </section>
+  </main>
+
+  <!-- Past Assignments -->
+  <section class="max-w-6xl mx-auto p-6">
+    <h3 class="text-2xl font-bold mb-4">📜 Past Assignments</h3>
+    <div class="overflow-x-auto bg-white shadow rounded-xl">
+      <table class="w-full text-left border-collapse">
         <thead>
-          <tr class="bg-gray-100">
-            <th class="p-3 border">Title</th>
-            <th class="p-3 border">Status</th>
-            <th class="p-3 border">Date</th>
+          <tr class="bg-blue-900 text-white">
+            <th class="p-3">Title</th>
+            <th class="p-3">Status</th>
+            <th class="p-3">Feedback</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="p-3 border">Population Geography Essay</td>
-            <td class="p-3 border text-yellow-600 font-semibold">Processing</td>
-            <td class="p-3 border">Aug 28, 2025</td>
+          <tr class="border-b hover:bg-gray-100">
+            <td class="p-3">Population Geography Essay</td>
+            <td class="p-3 text-yellow-600 font-semibold">Pending</td>
+            <td class="p-3">-</td>
           </tr>
-          <tr>
-            <td class="p-3 border">Political Science Report</td>
-            <td class="p-3 border text-green-600 font-semibold">Completed</td>
-            <td class="p-3 border">Aug 20, 2025</td>
+          <tr class="border-b hover:bg-gray-100">
+            <td class="p-3">Political Science Report</td>
+            <td class="p-3 text-green-600 font-semibold">Completed</td>
+            <td class="p-3">Well researched. Great work!</td>
+          </tr>
+          <tr class="hover:bg-gray-100">
+            <td class="p-3">Economics Case Study</td>
+            <td class="p-3 text-red-600 font-semibold">Unpaid</td>
+            <td class="p-3">Complete payment to access.</td>
           </tr>
         </tbody>
       </table>
     </div>
-
-    <!-- Submit Assignment -->
-    <div class="bg-white shadow-md rounded-xl p-6">
-      <h3 class="text-xl font-bold mb-4">✍️ Submit Assignment</h3>
-      <form class="space-y-4">
-        <input type="text" placeholder="Assignment Title" class="w-full p-3 border rounded-lg">
-        <textarea placeholder="Paste text here..." class="w-full p-3 border rounded-lg"></textarea>
-        <input type="url" placeholder="Or paste a link" class="w-full p-3 border rounded-lg">
-        <input type="file" class="w-full p-3 border rounded-lg">
-        <button type="submit" class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold">Submit Now</button>
-      </form>
-      <a href="https://mpesa-stk.giftedtech.co.ke/maka" class="block mt-4 w-full bg-green-600 text-white py-3 rounded-lg text-center font-bold">Pay Now</a>
-    </div>
-  </main>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-900 text-white text-center py-6 mt-16">
+  <footer class="bg-blue-900 text-white text-center py-6 mt-12">
     <p>&copy; 2025 Assignment Pro. Built with ❤️ by experts.</p>
   </footer>
+
 </body>
 </html>
-
