@@ -2,48 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Assignment Guru - Login</title>
-  <link rel="stylesheet" href="login.css">
+  <title>Assignment Help - Home</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Left side description -->
-    <div class="info-section">
-      <h1>📚 Assignment Guru</h1>
+  <header>
+    <h1>📘 Assignment Help Platform</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="login.html">🔑 Login</a>
+      <a href="dashboard.html">📊 Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>We Are the Best Among the Best 🚀</h2>
       <p>
-        Focus on your studies and exams while we handle your assignments.  
-        Get <strong>plagiarism-free, timely, and high-quality work</strong> from experts you can trust.
+        Struggling with tough assignments? Look no further!  
+        Our team of expert writers and tutors deliver top-quality, plagiarism-free work — on time, every time.  
+        Join thousands of satisfied students across universities worldwide.
       </p>
-      <ul>
-        <li>✅ Expert-written assignments</li>
-        <li>✅ On-time delivery</li>
-        <li>✅ Affordable and student-friendly</li>
-      </ul>
-    </div>
+      <button onclick="window.location.href='login.html'">Get Started</button>
+    </section>
 
-    <!-- Right side login -->
-    <div class="login-section">
-      <div class="login-card">
-        <h2>Welcome Back 👋</h2>
-        <p class="subtitle">Log in to continue</p>
-
-        <form id="loginForm">
-          <label>Email</label>
-          <input type="email" id="loginEmail" placeholder="Enter your email" required>
-
-          <label>Password</label>
-          <input type="password" id="loginPassword" placeholder="Enter your password" required>
-
-          <button type="submit">Login</button>
-        </form>
-
-        <button id="demoBtn" class="demo-btn">🎓 Demo Login</button>
-
-        <p class="signup-text">Don’t have an account? <a href="#">Sign Up</a></p>
+    <section class="features">
+      <h3>Why Choose Us?</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>✅ Trusted Experts</h4>
+          <p>Our writers are professionals in diverse fields.</p>
+        </div>
+        <div class="card">
+          <h4>⚡ Fast Delivery</h4>
+          <p>On-time submission guaranteed for every order.</p>
+        </div>
+        <div class="card">
+          <h4>💰 Affordable</h4>
+          <p>Fair pricing for high-quality academic work.</p>
+        </div>
+        <div class="card">
+          <h4>🔒 Secure</h4>
+          <p>Your data and payments are always safe with us.</p>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
-  <script src="app.js"></script>
+  <footer>
+    <p>© 2025 Assignment Help - Excellence Delivered</p>
+  </footer>
 </body>
 </html>
