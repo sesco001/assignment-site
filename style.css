@@ -1,0 +1,139 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f7fb;
+  color: #333;
+}
+
+header {
+  background: #2575fc;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem;
+  background: #e3f2fd;
+}
+
+.hero h2 {
+  margin-bottom: 1rem;
+}
+
+.hero button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.features {
+  padding: 2rem;
+  background: #fff;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.submit-form {
+  padding: 2rem;
+  margin: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.submit-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-form label {
+  margin-top: 1rem;
+}
+
+.submit-form input, .submit-form textarea {
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.submit-form button {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Login Page */
+.login-box {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-box label {
+  margin: 0.5rem 0 0.2rem;
+}
+
+.login-box input {
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.login-box button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2575fc;
+  color: white;
+  margin-top: 2rem;
+}
+
