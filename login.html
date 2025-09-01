@@ -24,7 +24,7 @@
           <option value="admin">Admin</option>
         </select>
 
-        <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg">Login</button>
+        <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">Login</button>
       </form>
       <p class="text-center mt-4">Don’t have an account? 
         <a href="signup.html" class="text-blue-900 font-bold">Sign Up</a>
@@ -35,17 +35,23 @@
   <script>
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
+      
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
       const role = document.getElementById("role").value;
 
-      if(role === "admin"){
-        // Simple check for admin login (replace with Supabase role check)
-        const email = document.getElementById("email").value;
-        if(email === "admin@assignmentpro.com"){
+      // Dummy admin credentials (replace with Supabase later)
+      const adminEmail = "admin@assignmentpro.com";
+      const adminPassword = "Admin123!";
+
+      if (role === "admin") {
+        if (email === adminEmail && password === adminPassword) {
           window.location.href = "admin.html";
         } else {
-          alert("Unauthorized admin login");
+          alert("Unauthorized admin login. Please check credentials.");
         }
       } else {
+        // normal user login → dashboard
         window.location.href = "dashboard.html";
       }
     });
