@@ -1,139 +1,170 @@
-/* General styles */
-body {
-  font-family: Arial, sans-serif;
+/* Global Reset */
+* {
   margin: 0;
   padding: 0;
-  background: #f4f7fb;
-  color: #333;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Body */
+body {
+  background: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
 header {
-  background: #2575fc;
-  color: white;
-  padding: 1rem;
+  background: #1a73e8;
+  color: #fff;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-header nav a {
-  margin-left: 1rem;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
+header h1 {
+  font-size: 1.8rem;
 }
 
+header nav a {
+  color: #fff;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: #ffd54f;
+}
+
+/* Hero Section */
 .hero {
+  background: linear-gradient(135deg, #1a73e8, #4285f4);
+  color: #fff;
   text-align: center;
-  padding: 3rem;
-  background: #e3f2fd;
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  margin: 2rem;
 }
 
 .hero h2 {
+  font-size: 2.2rem;
   margin-bottom: 1rem;
 }
 
 .hero button {
-  margin-top: 1rem;
+  background: #ffd54f;
+  border: none;
   padding: 0.8rem 1.5rem;
-  background: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
   cursor: pointer;
+  margin-top: 1rem;
+  transition: 0.3s;
 }
 
+.hero button:hover {
+  background: #ffca28;
+  transform: scale(1.05);
+}
+
+/* Features Section */
 .features {
-  padding: 2rem;
+  margin: 2rem;
+  padding: 1.5rem;
   background: #fff;
-  margin: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.submit-form {
-  padding: 2rem;
-  margin: 1rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.features h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #1a73e8;
 }
 
-.submit-form form {
-  display: flex;
-  flex-direction: column;
+.features ul {
+  list-style: none;
 }
 
-.submit-form label {
-  margin-top: 1rem;
+.features li {
+  padding: 0.5rem 0;
+  font-size: 1.05rem;
 }
 
-.submit-form input, .submit-form textarea {
-  padding: 0.7rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.submit-form button {
-  margin-top: 1rem;
-  padding: 0.8rem;
-  background: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Login Page */
-.login-box {
+/* Form Styling */
+.form-box {
   max-width: 400px;
   margin: 3rem auto;
   padding: 2rem;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.login-box h2 {
+.form-box h2 {
   text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1a73e8;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  color: #555;
+}
+
+form input {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  background: #1a73e8;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background: #1558c0;
+}
+
+/* Dashboard */
+.dashboard-box {
+  margin: 2rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-box h2 {
+  color: #1a73e8;
+  margin-bottom: 0.8rem;
+}
+
+.dashboard-box p {
   margin-bottom: 1rem;
 }
 
-.login-box form {
-  display: flex;
-  flex-direction: column;
+.quick-actions {
+  margin: 1rem 0;
 }
 
-.login-box label {
-  margin: 0.5rem 0 0.2rem;
-}
-
-.login-box input {
-  padding: 0.7rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.login-box button {
-  margin-top: 1rem;
-  padding: 0.7rem;
-  background: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.signup-text {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #2575fc;
-  color: white;
-  margin-top: 2rem;
-}
+.quick-actions button {
+  m
 
