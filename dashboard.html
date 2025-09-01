@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Assignment Help</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>📊 Student Dashboard</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="dashboard.html">📂 My Dashboard</a>
+      <a href="login.html" onclick="logout()">🚪 Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="dashboard-box">
+      <h2 id="welcomeMsg">Welcome Back 🎓</h2>
+      <p>Track your assignments and stay on top of deadlines.</p>
+
+      <div class="quick-actions">
+        <button onclick="window.location.href='index.html'">➕ Submit New Assignment</button>
+        <button onclick="alert('Profile page coming soon!')">👤 Edit Profile</button>
+      </div>
+
+      <h3>📂 My Past Assignments</h3>
+      <table id="assignmentsTable">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>University</th>
+            <th>Status</th>
+            <th>Submitted On</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Economics Essay</td>
+            <td>University of Nairobi</td>
+            <td><span class="status pending">Pending</span></td>
+            <td>2025-09-01</td>
+            <td><button>Pay Now</button></td>
+          </tr>
+          <tr>
+            <td>Political Science Report</td>
+            <td>Kenyatta University</td>
+            <td><span class="status processing">Processing</span></td>
+            <td>2025-08-25</td>
+            <td><button disabled>In Progress</button></td>
+          </tr>
+          <tr>
+            <td>History Paper</td>
+            <td>Moi University</td>
+            <td><span class="status success">Completed</span></td>
+            <td>2025-08-15</td>
+            <td><button onclick="alert('Download feature coming soon!')">Download</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Assignment Help - Excellence Delivered</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
