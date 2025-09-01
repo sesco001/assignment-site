@@ -3,41 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartAssign | The #1 Assignment Help</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Assignment Pro - The Best Help Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header class="navbar">
-    <h1 class="logo">SmartAssign</h1>
-    <nav>
-      <a href="login.html" class="btn">Login</a>
-      <a href="login.html" class="btn btn-primary">Get Started</a>
-    </nav>
-  </header>
+<body class="bg-gray-50 font-sans">
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white p-4 flex justify-between">
+    <h1 class="text-xl font-bold">📘 Assignment Pro</h1>
+    <div>
+      <a href="login.html" class="px-3 py-2 bg-yellow-400 text-blue-900 font-semibold rounded-lg">Login</a>
+    </div>
+  </nav>
 
-  <section class="hero">
-    <h2>We Are the Best Among the Best 🚀</h2>
-    <p>Submit your assignments and let experts handle them with speed, accuracy, and integrity.</p>
-    <a href="login.html" class="btn btn-primary">Submit Assignment Now</a>
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+    <h1 class="text-4xl font-bold mb-4">We Are the Best Among the Best 🚀</h1>
+    <p class="text-lg mb-6">Trusted by thousands of students across universities to deliver top-notch, plagiarism-free, on-time assignments.</p>
+    <a href="#submit" class="bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded-lg">Submit Your Assignment</a>
   </section>
 
-  <section class="features">
-    <div class="feature">
-      <h3>⚡ Fast Delivery</h3>
-      <p>Assignments are completed and delivered in record time without compromising quality.</p>
+  <!-- Features -->
+  <section class="py-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
+    <div class="bg-white shadow-md rounded-xl p-6 text-center">
+      <h3 class="text-xl font-bold mb-2">🎓 Expert Writers</h3>
+      <p>Our experts are highly qualified professionals from top universities, ensuring excellence in every paper.</p>
     </div>
-    <div class="feature">
-      <h3>✅ Verified Experts</h3>
-      <p>Work is done by highly qualified academic experts from top universities.</p>
+    <div class="bg-white shadow-md rounded-xl p-6 text-center">
+      <h3 class="text-xl font-bold mb-2">⚡ Fast Turnaround</h3>
+      <p>Assignments delivered on time, always. Deadlines are sacred to us, and we never compromise.</p>
     </div>
-    <div class="feature">
-      <h3>🔒 Secure & Private</h3>
-      <p>Payments are encrypted and your details are never shared. 100% confidentiality guaranteed.</p>
+    <div class="bg-white shadow-md rounded-xl p-6 text-center">
+      <h3 class="text-xl font-bold mb-2">💰 Secure Payments</h3>
+      <p>Pay safely with Mpesa STK push. Transparency and trust, no hidden charges.</p>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 SmartAssign. All Rights Reserved.</p>
+  <!-- Submit Assignment Form -->
+  <section id="submit" class="bg-white py-16 shadow-inner">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-6">Submit Your Assignment</h2>
+      <form class="bg-gray-100 p-6 rounded-xl shadow-md">
+        <label class="block mb-2 font-semibold">Assignment Title</label>
+        <input type="text" class="w-full p-3 border rounded-lg mb-4" placeholder="e.g. Population Geography Essay">
+
+        <label class="block mb-2 font-semibold">Upload File</label>
+        <input type="file" class="w-full p-3 border rounded-lg mb-4">
+
+        <button class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg">Submit Now</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white text-center py-6 mt-16">
+    <p>&copy; 2025 Assignment Pro. Built with ❤️ by experts.</p>
   </footer>
 </body>
 </html>
