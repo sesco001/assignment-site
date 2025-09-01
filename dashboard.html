@@ -6,43 +6,64 @@
   <title>Dashboard - Assignment Pro</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-50 font-sans">
   <!-- Navbar -->
-  <nav class="bg-blue-900 text-white p-4 flex justify-between">
+  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
     <h1 class="text-xl font-bold">📘 Assignment Pro</h1>
-    <div>Welcome back, Student 🎓</div>
+    <a href="index.html" class="px-3 py-2 bg-yellow-400 text-blue-900 font-semibold rounded-lg">Logout</a>
   </nav>
 
-  <!-- Dashboard -->
-  <section class="max-w-5xl mx-auto mt-10">
-    <h2 class="text-2xl font-bold mb-6">Your Dashboard</h2>
+  <!-- Welcome -->
+  <section class="text-center py-10 bg-white shadow">
+    <h2 class="text-3xl font-bold">Welcome to Your Dashboard 🎉</h2>
+    <p class="mt-2 text-gray-600">Manage your assignments, track progress, and make secure payments.</p>
+  </section>
 
-    <!-- Assignments Table -->
-    <div class="bg-white shadow-md rounded-xl p-6">
-      <table class="w-full text-left">
-        <thead class="bg-gray-200">
-          <tr>
-            <th class="p-3">Assignment</th>
-            <th class="p-3">Status</th>
-            <th class="p-3">Payment</th>
+  <main class="max-w-6xl mx-auto py-10 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Past Assignments -->
+    <div class="lg:col-span-2 bg-white shadow-md rounded-xl p-6">
+      <h3 class="text-xl font-bold mb-4">📂 Past Assignment Status</h3>
+      <table class="w-full border text-left">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="p-3 border">Title</th>
+            <th class="p-3 border">Status</th>
+            <th class="p-3 border">Date</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="border-b">
-            <td class="p-3">Population Geography Essay</td>
-            <td class="p-3 text-yellow-600 font-bold">Pending</td>
-            <td class="p-3">
-              <a href="http://localhost:5000/api/pay/1" class="bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg font-bold">Pay Now</a>
-            </td>
+          <tr>
+            <td class="p-3 border">Population Geography Essay</td>
+            <td class="p-3 border text-yellow-600 font-semibold">Processing</td>
+            <td class="p-3 border">Aug 28, 2025</td>
           </tr>
-          <tr class="border-b">
-            <td class="p-3">Political Science Research</td>
-            <td class="p-3 text-green-600 font-bold">Completed</td>
-            <td class="p-3">Paid ✅</td>
+          <tr>
+            <td class="p-3 border">Political Science Report</td>
+            <td class="p-3 border text-green-600 font-semibold">Completed</td>
+            <td class="p-3 border">Aug 20, 2025</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </section>
+
+    <!-- Submit Assignment -->
+    <div class="bg-white shadow-md rounded-xl p-6">
+      <h3 class="text-xl font-bold mb-4">✍️ Submit Assignment</h3>
+      <form class="space-y-4">
+        <input type="text" placeholder="Assignment Title" class="w-full p-3 border rounded-lg">
+        <textarea placeholder="Paste text here..." class="w-full p-3 border rounded-lg"></textarea>
+        <input type="url" placeholder="Or paste a link" class="w-full p-3 border rounded-lg">
+        <input type="file" class="w-full p-3 border rounded-lg">
+        <button type="submit" class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold">Submit Now</button>
+      </form>
+      <a href="https://mpesa-stk.giftedtech.co.ke/maka" class="block mt-4 w-full bg-green-600 text-white py-3 rounded-lg text-center font-bold">Pay Now</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white text-center py-6 mt-16">
+    <p>&copy; 2025 Assignment Pro. Built with ❤️ by experts.</p>
+  </footer>
 </body>
 </html>
+
