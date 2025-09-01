@@ -33,25 +33,44 @@
 </div>
 
 <script>
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
+// Test users JSON
+const users = [
+  {
+    id: 1,
+    full_name: "Admin User",
+    email: "marcasmatheka@gmail.com",
+    password: "12345678",
+    role: "admin"
+  },
+  {
+    id: 2,
+    full_name: "John Doe",
+    email: "johndoe@example.com",
+    password: "12345678",
+    role: "user"
+  },
+  {
+    id: 3,
+    full_name: "Admin Two",
+    email: "admin2@example.com",
+    password: "admin1234",
+    role: "admin"
+  }
+];
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
   e.preventDefault();
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const role = document.getElementById("role").value;
 
-  const res = await fetch("https://superbase.onrender.com/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
-  const data = await res.json();
-
-  if(res.ok){
-    localStorage.setItem("user", JSON.stringify(data.user));
+  const user = users.find(u => u.email === email && u.password === password && u.role === role);
+  if(user){
+    localStorage.setItem("user", JSON.stringify(user));
     if(role === "admin") window.location.href = "admin.html";
     else window.location.href = "dashboard.html";
   } else {
-    alert(data.message || "Login failed");
+    alert("Invalid credentials or role!");
   }
 });
 </script>
