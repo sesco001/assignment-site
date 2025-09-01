@@ -8,31 +8,57 @@
 </head>
 <body class="bg-gray-50 font-sans">
 
-<!-- Navbar -->
 <nav class="bg-blue-900 text-white p-4 flex justify-between">
   <h1 class="text-xl font-bold">📘 Assignment Pro - Admin</h1>
   <button id="logoutBtn" class="px-3 py-2 bg-red-500 font-semibold rounded-lg">Logout</button>
 </nav>
 
 <section class="max-w-6xl mx-auto py-10 px-4">
-  <h2 class="text-3xl font-bold mb-6">All Assignments</h2>
 
-  <table class="w-full text-left border-collapse">
-    <thead>
-      <tr>
-        <th class="border p-2">Title</th>
-        <th class="border p-2">User Email</th>
-        <th class="border p-2">Status</th>
-        <th class="border p-2">Paid</th>
-        <th class="border p-2">Solution</th>
-        <th class="border p-2">Actions</th>
-      </tr>
-    </thead>
-    <tbody id="adminAssignments"></tbody>
-  </table>
+<h2 class="text-3xl font-bold mb-6">All Users</h2>
+<table class="w-full text-left border-collapse mb-10">
+  <thead>
+    <tr>
+      <th class="border p-2">ID</th>
+      <th class="border p-2">Full Name</th>
+      <th class="border p-2">Email</th>
+      <th class="border p-2">Role</th>
+    </tr>
+  </thead>
+  <tbody id="membersList"></tbody>
+</table>
+
+<h2 class="text-3xl font-bold mb-6">Assignments Management</h2>
+<table class="w-full text-left border-collapse">
+  <thead>
+    <tr>
+      <th class="border p-2">Title</th>
+      <th class="border p-2">User Email</th>
+      <th class="border p-2">Status</th>
+      <th class="border p-2">Paid</th>
+      <th class="border p-2">Solution</th>
+      <th class="border p-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody id="adminAssignments"></tbody>
+</table>
+
 </section>
 
 <script>
+// Dummy users
+let users = [
+  { id: 1, full_name: "Admin User", email: "marcasmatheka@gmail.com", password: "12345678", role: "admin" },
+  { id: 2, full_name: "John Doe", email: "johndoe@example.com", password: "12345678", role: "user" },
+  { id: 3, full_name: "Admin Two", email: "admin2@example.com", password: "admin1234", role: "admin" }
+];
+
+// Dummy assignments
+let assignments = [
+  { id: 1, title: "Essay on Geography", email: "johndoe@example.com", status: "Pending", paid: false, solution: null },
+  { id: 2, title: "Math Assignment", email: "johndoe@example.com", status: "Pending", paid: false, solution: null }
+];
+
 const admin = JSON.parse(localStorage.getItem("user"));
 if(!admin || admin.role !== "admin") window.location.href = "login.html";
 
@@ -41,10 +67,21 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
   window.location.href = "login.html";
 });
 
-// Load assignments
-async function loadAdminAssignments(){
-  const res = await fetch("https://superbase.onrender.com/api/admin/assignments");
-  const assignments = await res.json();
+function loadMembers(){
+  const tbody = document.getElementById("membersList");
+  tbody.innerHTML = "";
+  users.forEach(u => {
+    tbody.innerHTML += `
+      <tr>
+        <td class="border p-2">${u.id}</td>
+        <td class="border p-2">${u.full_name}</td>
+        <td class="border p-2">${u.email}</td>
+        <td class="border p-2">${u.role}</td>
+      </tr>`;
+  });
+}
+
+function loadAssignments(){
   const tbody = document.getElementById("adminAssignments");
   tbody.innerHTML = "";
   assignments.forEach(a => {
@@ -52,51 +89,54 @@ async function loadAdminAssignments(){
       <tr>
         <td class="border p-2">${a.title}</td>
         <td class="border p-2">${a.email}</td>
-        <td class="border p-2">${a.status}</td>
-        <td class="border p-2">${a.paid ? "Yes" : "No"}</td>
-        <td class="border p-2">${a.solution ? `<a href="${a.solution.link || a.solution.file_url}" target="_blank">View</a>` : "N/A"}</td>
         <td class="border p-2">
-          ${!a.paid ? `<button onclick="markPaid('${a.id}')" class="bg-green-500 text-white px-2 py-1 rounded mb-1">Mark Paid</button>` : ""}
-          <form onsubmit="uploadSolution(event,'${a.id}')" class="mt-1">
-            <input type="file" name="solution" required>
-            <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded">Upload Solution</button>
-          </form>
+          <select id="status-${a.id}" onchange="updateStatus(${a.id})" class="border px-1 py-0.5 rounded">
+            <option value="Pending" ${a.status==="Pending"?"selected":""}>Pending</option>
+            <option value="Processing" ${a.status==="Processing"?"selected":""}>Processing</option>
+            <option value="Success" ${a.status==="Success"?"selected":""}>Success</option>
+          </select>
+        </td>
+        <td class="border p-2">${a.paid ? "Yes" : `<button onclick="markPaid(${a.id})" class="bg-green-500 text-white px-2 py-1 rounded">Mark Paid</button>`}</td>
+        <td class="border p-2">
+          <input type="text" id="solution-${a.id}" placeholder="Solution link" value="${a.solution||''}" class="border px-1 py-0.5 rounded"/>
+          <button onclick="uploadSolution(${a.id})" class="bg-blue-500 text-white px-2 py-1 rounded ml-1">Update</button>
         </td>
       </tr>`;
   });
 }
 
-// Mark paid
-async function markPaid(id){
-  const res = await fetch("https://superbase.onrender.com/api/admin/mark-paid", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id })
-  });
-  const data = await res.json();
-  alert(data.message);
-  loadAdminAssignments();
+function markPaid(id){
+  const a = assignments.find(a => a.id === id);
+  if(a){
+    a.paid = true;
+    a.status = "Processing"; // automatic status change
+    alert("Marked as paid and status set to Processing!");
+    loadAssignments();
+  }
 }
 
-// Upload solution
-async function uploadSolution(e, id){
-  e.preventDefault();
-  const file = e.target.solution.files[0];
-  const formData = new FormData();
-  formData.append("id", id);
-  formData.append("file", file);
-
-  const res = await fetch("https://superbase.onrender.com/api/admin/upload-solution", {
-    method: "POST",
-    body: formData
-  });
-  const data = await res.json();
-  alert(data.message);
-  loadAdminAssignments();
+function uploadSolution(id){
+  const input = document.getElementById(`solution-${id}`);
+  const val = input.value.trim();
+  const a = assignments.find(a => a.id === id);
+  if(a){
+    a.solution = val;
+    if(a.status==="Processing") a.status="Success"; // automatic success if solution added
+    alert("Solution updated!");
+    loadAssignments();
+  }
 }
 
-loadAdminAssignments();
+function updateStatus(id){
+  const select = document.getElementById(`status-${id}`);
+  const a = assignments.find(a => a.id === id);
+  if(a) a.status = select.value;
+}
+
+loadMembers();
+loadAssignments();
 </script>
 
 </body>
 </html>
+
