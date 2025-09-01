@@ -2,71 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard - Assignment Help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | SmartAssign</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>📊 Student Dashboard</h1>
+  <header class="navbar">
+    <h1 class="logo">SmartAssign</h1>
     <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="dashboard.html">📂 My Dashboard</a>
-      <a href="login.html" onclick="logout()">🚪 Logout</a>
+      <a href="index.html" class="btn">Home</a>
+      <a href="#" id="logout" class="btn btn-danger">Logout</a>
     </nav>
   </header>
 
-  <main>
-    <section class="dashboard-box">
-      <h2 id="welcomeMsg">Welcome Back 🎓</h2>
-      <p>Track your assignments and stay on top of deadlines.</p>
+  <section class="dashboard">
+    <h2>Your Dashboard</h2>
+    <form id="assignmentForm" class="card">
+      <input type="text" id="title" placeholder="Assignment Title" required>
+      <input type="text" id="file" placeholder="Paste File URL (PDF, DOCX, etc.)" required>
+      <button type="submit" class="btn btn-primary">Submit Assignment</button>
+    </form>
 
-      <div class="quick-actions">
-        <button onclick="window.location.href='index.html'">➕ Submit New Assignment</button>
-        <button onclick="alert('Profile page coming soon!')">👤 Edit Profile</button>
-      </div>
+    <h3>Past Assignments</h3>
+    <table class="assignments-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Payment</th>
+        </tr>
+      </thead>
+      <tbody id="assignmentList"></tbody>
+    </table>
+  </section>
 
-      <h3>📂 My Past Assignments</h3>
-      <table id="assignmentsTable">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>University</th>
-            <th>Status</th>
-            <th>Submitted On</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Economics Essay</td>
-            <td>University of Nairobi</td>
-            <td><span class="status pending">Pending</span></td>
-            <td>2025-09-01</td>
-            <td><button>Pay Now</button></td>
-          </tr>
-          <tr>
-            <td>Political Science Report</td>
-            <td>Kenyatta University</td>
-            <td><span class="status processing">Processing</span></td>
-            <td>2025-08-25</td>
-            <td><button disabled>In Progress</button></td>
-          </tr>
-          <tr>
-            <td>History Paper</td>
-            <td>Moi University</td>
-            <td><span class="status success">Completed</span></td>
-            <td>2025-08-15</td>
-            <td><button onclick="alert('Download feature coming soon!')">Download</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+  <script>
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) window.location.href = "login.html";
 
-  <footer>
-    <p>© 2025 Assignment Help - Excellence Delivered</p>
-  </footer>
+    document.getElementById("assignmentForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const file = document.getElementById("file").value;
 
-  <script src="app.js"></script>
+      await fetch("http://localhost:5000/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: user.id, title, file })
+      });
+
+      alert("Assignment submitted! Please pay to proceed.");
+      loadAssignments();
+    });
+
+    async function loadAssignments() {
+      const res = await fetch("http://localhost:5000/api/assignments");
+      const data = await res.json();
+      const tbody = document.getElementById("assignmentList");
+      tbody.innerHTML = "";
+      data.filter(a => a.user_id === user.id).forEach(a => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${a.title}</td>
+            <td>${a.status}</td>
+            <td>
+              ${a.paid ? "✅ Paid" : `<a href="http://localhost:5000/api/pay/${a.id}" class="btn btn-primary">Pay Now</a>`}
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    loadAssignments();
+
+    document.getElementById("logout").addEventListener("click", () => {
+      localStorage.removeItem("user");
+      window.location.href = "index.html";
+    });
+  </script>
 </body>
 </html>
