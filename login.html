@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Assignment Pro</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Assignment Pro</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans">
 
-  <div class="flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-      <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
-      <form id="loginForm">
-        <label class="block mb-2 font-semibold">Email</label>
-        <input type="email" id="email" class="w-full p-3 border rounded-lg mb-4" required>
+<div class="flex items-center justify-center min-h-screen">
+  <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+    <form id="loginForm">
+      <label class="block mb-2 font-semibold">Email</label>
+      <input type="email" id="email" class="w-full p-3 border rounded-lg mb-4" required>
 
-        <label class="block mb-2 font-semibold">Password</label>
-        <input type="password" id="password" class="w-full p-3 border rounded-lg mb-4" required>
+      <label class="block mb-2 font-semibold">Password</label>
+      <input type="password" id="password" class="w-full p-3 border rounded-lg mb-4" required>
 
-        <label class="block mb-2 font-semibold">Login as</label>
-        <select id="role" class="w-full p-3 border rounded-lg mb-4" required>
-          <option value="user">User (Student)</option>
-          <option value="admin">Admin</option>
-        </select>
+      <label class="block mb-2 font-semibold">Login as</label>
+      <select id="role" class="w-full p-3 border rounded-lg mb-4" required>
+        <option value="user">User (Student)</option>
+        <option value="admin">Admin</option>
+      </select>
 
-        <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">Login</button>
-      </form>
-      <p class="text-center mt-4">Don’t have an account? 
-        <a href="signup.html" class="text-blue-900 font-bold">Sign Up</a>
-      </p>
-    </div>
+      <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg">Login</button>
+    </form>
+    <p class="text-center mt-4">Don’t have an account? 
+      <a href="signup.html" class="text-blue-900 font-bold">Sign Up</a>
+    </p>
   </div>
+</div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const role = document.getElementById("role").value;
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const role = document.getElementById("role").value;
 
-      // Dummy admin credentials (replace with Supabase later)
-      const adminEmail = "admin@assignmentpro.com";
-      const adminPassword = "Admin123!";
+  const res = await fetch("https://superbase.onrender.com/api/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+  const data = await res.json();
 
-      if (role === "admin") {
-        if (email === adminEmail && password === adminPassword) {
-          window.location.href = "admin.html";
-        } else {
-          alert("Unauthorized admin login. Please check credentials.");
-        }
-      } else {
-        // normal user login → dashboard
-        window.location.href = "dashboard.html";
-      }
-    });
-  </script>
+  if(res.ok){
+    localStorage.setItem("user", JSON.stringify(data.user));
+    if(role === "admin") window.location.href = "admin.html";
+    else window.location.href = "dashboard.html";
+  } else {
+    alert(data.message || "Login failed");
+  }
+});
+</script>
+
 </body>
 </html>
