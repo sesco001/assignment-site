@@ -3,43 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | SmartAssign</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Login - Assignment Pro</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="centered">
-  <div class="form-container">
-    <h2>Welcome Back</h2>
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <input type="text" id="university" placeholder="University" required>
-      <button type="submit" class="btn btn-primary">Login</button>
+<body class="bg-gray-50 flex items-center justify-center h-screen">
+  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center text-blue-900 mb-6">Login to Your Account</h2>
+    <form action="dashboard.html" method="GET">
+      <label class="block mb-2 font-semibold">Email</label>
+      <input type="email" class="w-full p-3 border rounded-lg mb-4" placeholder="Enter your email">
+      <br>
+
+      <label class="block mb-2 font-semibold">Password</label>
+      <input type="password" class="w-full p-3 border rounded-lg mb-6" placeholder="Enter your password">
+      <br>
+
+      <label class="block mb-2 font-semibold">University</label>
+      <input type="text" class="w-full p-3 border rounded-lg mb-6" placeholder="Your University">
+      <br>
+
+      <button class="w-full bg-yellow-400 text-blue-900 font-bold py-3 rounded-lg">Login</button>
     </form>
-    <p class="note">Don't have an account? <a href="register.html">Register</a></p>
   </div>
-
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const university = document.getElementById("university").value;
-
-      const res = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
-      });
-
-      const data = await res.json();
-      if (data.id) {
-        localStorage.setItem("user", JSON.stringify(data));
-        alert("Welcome to your dashboard!");
-        window.location.href = "dashboard.html";
-      } else {
-        alert("Login failed: " + (data.error || "Unknown error"));
-      }
-    });
-  </script>
 </body>
 </html>
